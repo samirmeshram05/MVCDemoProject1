@@ -1,5 +1,7 @@
 package in.sam.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,9 +62,31 @@ public class demoController {
 		mv.setViewName("index");
 
 		// Console Message
-		System.out.println("Successfully Run");
+		System.out.println("Successfully Run WelCome");
 
 		// Return Response to DispatcherServlet
 		return mv;
+	}
+	
+	@GetMapping("/date")
+	public ModelAndView date() {
+
+	    // Create ModelAndView object
+	    ModelAndView mv = new ModelAndView();
+
+	    // Get current system date
+	    LocalDate dt = LocalDate.now();
+
+	    // Send data to JSP page
+	    mv.addObject("key", "Today's Date : " + dt);
+
+	    // Set JSP page name
+	    mv.setViewName("index");
+
+	    // Console message
+	    System.out.println("Successfully Run Date");
+
+	    // Return response
+	    return mv;
 	}
 }
