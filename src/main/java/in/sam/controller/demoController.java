@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /*
@@ -87,6 +88,56 @@ public class demoController {
 	    System.out.println("Successfully Run Date");
 
 	    // Return response
+	    return mv;
+	}
+	
+	/*
+	 * =========================================
+	 * URL : /utube
+	 * =========================================
+	 *
+	 * Purpose:
+	 * --------
+	 * Accepts user input from URL request
+	 * parameters and displays the values
+	 * on the JSP page.
+	 *
+	 * Example URL:
+	 * ------------
+	 * http://localhost:4322/utube?name=Samir&age=23
+	 *
+	 * Request Parameters:
+	 * -------------------
+	 * name -> User Name
+	 * age  -> User Age
+	 *
+	 * Output:
+	 * -------
+	 * Hello : Samir Age : 23
+	 *
+	 * =========================================
+	 */
+
+	@GetMapping("/utube")
+	public ModelAndView utube(
+	        @RequestParam String name,
+	        @RequestParam Integer age) {
+
+	    // Create ModelAndView Object
+	    ModelAndView mv = new ModelAndView();
+
+	    // Add data to Model
+	    mv.addObject(
+	            "key",
+	            "Hello : " + name + " Age : " + age);
+
+	    // Set JSP View Name
+	    mv.setViewName("index");
+
+	    // Console Message
+	    System.out.println("Successfully Run utube");
+
+	    // Return Response
 	    return mv;
 	}
 }
