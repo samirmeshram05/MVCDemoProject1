@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -138,6 +139,57 @@ public class demoController {
 	    System.out.println("Successfully Run utube");
 
 	    // Return Response
+	    return mv;
+	}
+	
+	/*
+	 * =========================================
+	 * URL : /path/{id}
+	 * =========================================
+	 *
+	 * Purpose:
+	 * --------
+	 * Demonstrates the use of @PathVariable.
+	 *
+	 * Example:
+	 * --------
+	 * http://localhost:4322/path/60
+	 *
+	 * If id > 50
+	 *    Green
+	 *
+	 * Else
+	 *    Red
+	 *
+	 * =========================================
+	 */
+
+	@GetMapping("/path/{id}")
+	public ModelAndView path(@PathVariable Integer id) {
+
+	    // Create ModelAndView Object
+	    ModelAndView mv = new ModelAndView();
+
+	    String color = "";
+
+	    // Check Condition
+	    if (id > 50) {
+	        color = "Green";
+	    } else {
+	        color = "Red";
+	    }
+
+	    // Send Data to JSP
+	    mv.addObject(
+	            "key",
+	            "ID : " + id + " Color : " + color);
+
+	    // Set JSP Page
+	    mv.setViewName("index");
+
+	    // Console Message
+	    System.out.println("Successfully Run Path");
+
 	    return mv;
 	}
 }
