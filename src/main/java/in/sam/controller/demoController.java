@@ -3,6 +3,7 @@ package in.sam.controller;
 import java.time.LocalDate;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -191,5 +192,62 @@ public class demoController {
 	    System.out.println("Successfully Run Path");
 
 	    return mv;
+	}
+	
+	/*
+	 * =========================================
+	 * URL : /way/{name}
+	 * =========================================
+	 *
+	 * Purpose:
+	 * --------
+	 * Demonstrates the use of @PathVariable.
+	 *
+	 * Example URL:
+	 * http://localhost:4322/way/Samir
+	 *
+	 * Output:
+	 * Good Morning : Samir
+	 *
+	 * =========================================
+	 */
+
+	@GetMapping("/way/{name}")
+	public String way(@PathVariable String name, Model mv) {
+
+	    // Add data to Model
+	    mv.addAttribute("key", "Good Morning : " + name);
+
+	    // Return JSP page
+	    return "index";
+	}
+	
+	
+	/*
+	 * =========================================
+	 * URL : /way2
+	 * =========================================
+	 *
+	 * Purpose:
+	 * --------
+	 * Demonstrates the use of @RequestParam.
+	 *
+	 * Example URL:
+	 * http://localhost:4322/way2?name=Samir
+	 *
+	 * Output:
+	 * Good Morning : Samir
+	 *
+	 * =========================================
+	 */
+
+	@GetMapping("/way2")
+	public String way2(@RequestParam String name, Model mv) {
+
+	    // Add data to Model
+	    mv.addAttribute("key", "Good Morning : " + name);
+
+	    // Return JSP page
+	    return "index";
 	}
 }
